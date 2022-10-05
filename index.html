@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario de Productos</title>
     <script src="./inventario.js"></script>
-    <script src="./app.js"></script>
+    <!-- <script src="./app.js"></script> -->
 </head>
 <body>
 
@@ -37,5 +37,77 @@
 
 
 </body>
+
+<script>
+let miAlmacen = new Inventario();
+
+//  Boton agregar producto
+
+let btnAgregar = document.getElementById("btnAgregar");
+btnAgregar.addEventListener("click", (event)=>{
+    let nombre = document.getElementById("nombre").value;
+    let codigo = document.getElementById("codigo").value;
+    let cantidad = document.getElementById("cantidad").value;
+    let costo = document.getElementById("costo").value;
+
+    let producto = new Producto(nombre, codigo, cantidad, costo);
+    miAlmacen.agregar(producto);
+    document.getElementById("listado").innerHTML =``;
+    event.preventDefault();
+});
+
+//Boton para eliminar producto
+
+let btnEliminar = document.getElementById("btnEliminar");
+btnEliminar.addEventListener("click", (event) => {
+    document.getElementById("Actividades").innerHTML;
+    let codigo = document.getElementById("codigo").value;
+    let bEliminar = miAlmacen.eliminar(codigo);
+    if (bEliminar != null) {
+        return document.getElementById("listado").innerHTML += `<p>¡Se ha eliminado el producto con el código ${codigo}!</p>`;
+    }
+    document.getElementById("listado").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
+    event.defaultPrevented();
+});
+
+//Boton para listar producto
+
+let btnListar = document.getElementById("btnListar");
+btnListar.addEventListener("click", (event)=>{
+    document.getElementById("listado").innerHTML += `<p> ${miAlmacen.listar()} </p>`
+    event.preventDefault();
+});
+
+//Boton para listar inverso producto
+
+let btnListarInv = document.getElementById("btnListarInv");
+btnListarInv.addEventListener("click", (event) => {
+    document.getElementById("listado").innerHTML +=`${miAlmacen.listarInverso()}`
+    event.defaultPrevented();
+});
+
+//Boton para buscar producto
+
+const btnBuscar = document.getElementById("btnBuscar");
+    btnBuscar.addEventListener("click", (event) => {
+        document.getElementById("Actividades").innerHTML;
+        let codigo = document.getElementById("codigo").value;
+        const producto = miAlmacen.buscar(codigo);
+        if (producto != null) {
+            return document.getElementById("listado").innerHTML += `<p>El producto con el código: ${codigo} existe</p>`;
+        }
+        document.getElementById("listado").innerHTML += `<p>No existe el producto con el código: ${codigo}</p>`;
+        event.defaultPrevented();
+    });
+
+// Boton para restablecer\
+const btnRestablecer = document.getElementById("btnRestablecer");
+    btnRestablecer.addEventListener("click", (event) => {
+        document.getElementById("Actividades").innerHTML = null;
+        document.getElementById("listado").innerHTML = null;
+        event.defaultPrevented();
+
+    });
+</script>
 
 </html>

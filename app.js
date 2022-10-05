@@ -1,3 +1,4 @@
+
 let miAlmacen = new Inventario();
 
 //  Boton agregar producto
@@ -39,9 +40,9 @@ btnListar.addEventListener("click", (event)=>{
 
 //Boton para listar inverso producto
 
-let btnListarInv = document.getElementById("btnMostrarInvertido")
+let btnListarInv = document.getElementById("btnListarInv");
 btnListarInv.addEventListener("click", (event) => {
-    document.getElementById("listado").innerHTML =`${miAlmacen.listadoInveso()}`
+    document.getElementById("listado").innerHTML =`${miAlmacen.listadoInverso()}`
     event.defaultPrevented();
 });
 

@@ -71,7 +71,7 @@ listar(){
     
     let listar = "";
         for (let i = 0; i < this.lista.length; i++) {
-                listar = `Producto ${i+1} informacion del producto: ${this.lista[i].info()}`;
+                listar += `Producto ${i+1} informacion del producto: ${this.lista[i].info()}`;
         }
         return listar;
     }
